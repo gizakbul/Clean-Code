@@ -1,0 +1,3 @@
+Bridge Pattern (Köprü Deseni), bir nesnenin soyutlaması ile uygulanmasını (implementation) birbirinden ayırarak, bu ikisinin bağımsız olarak değiştirilebilmesini sağlayan yapısal bir tasarım desenidir.
+
+Bu desen, farklı varyasyonların veya platformların desteklenmesi gerektiği durumlarda kod karmaşıklığını azaltmak için kullanılır. Soyutlama kısmı ve gerçekleme kısmı ayrı sınıflar halinde yapılandırılır ve bir "köprü" aracılığıyla birleştirilir. Böylece bir taraf değiştiğinde diğerine dokunmadan kolayca genişletilebilir.
