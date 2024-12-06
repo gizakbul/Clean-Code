@@ -1,0 +1,84 @@
+import java.util.function.Supplier;
+
+class SingletonTester
+{
+  public static boolean isSingleton(Supplier<Object> func)
+  {
+    // Call the supplier twice
+    Object instance1 = func.get();
+    Object instance2 = func.get();
+    
+    // Check if both instances are the same
+    return instance1 == instance2;
+  }
+
+  public static void main(String[] args) {
+    // Example usage:
+    
+    // This supplier always returns the same instance (singleton)
+    Supplier<Object> singletonSupplier = new Supplier<Object>() {
+      private final Object instance = new Object();
+      @Override
+      public Object get() {
+        return instance;
+      }
+    };
+
+    // This supplier always returns a new instance (not a singleton)
+    Supplier<Object> nonSingletonSupplier = new Supplier<Object>() {
+      @Override
+      public Object get() {
+        return new Object();
+      }
+    };
+
+    // Test the suppliers
+    System.out.println(isSingleton(singletonSupplier)); // should print true
+    System.out.println(isSingleton(nonSingletonSupplier)); // should print false
+  }
+}
+
+------------------------------------------------------------------------------------------
+Code - 2
+
+------------------------------------------------------------------------------------------
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.Supplier;
+
+class SingletonTester
+{
+  public static boolean isSingleton(Supplier<Object> func)
+  {
+    Set<Object> instances = new HashSet<>();
+    for (int i = 0; i < 10; i++) {
+      instances.add(func.get());
+    }
+    return instances.size() == 1;
+  }
+
+  public static void main(String[] args) {
+    // Örnek kullanım:
+
+    // Bu tedarikçi her zaman aynı örneği döndürür (singleton)
+    Supplier<Object> singletonSupplier = new Supplier<Object>() {
+      private final Object instance = new Object();
+      @Override
+      public Object get() {
+        return instance;
+      }
+    };
+
+    // Bu tedarikçi her zaman yeni bir örnek döndürür (singleton değil)
+    Supplier<Object> nonSingletonSupplier = new Supplier<Object>() {
+      @Override
+      public Object get() {
+        return new Object();
+      }
+    };
+
+    // Tedarikçileri test et
+    System.out.println(isSingleton(singletonSupplier)); // true yazdırır
+    System.out.println(isSingleton(nonSingletonSupplier)); // false yazdırır
+  }
+}
